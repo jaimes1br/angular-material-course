@@ -11,6 +11,23 @@
 
   </div>
 
+  <!--Creamos un gruopo de tabs, las pestañas para entrar a diferentes partes como del menu
+  cada una de los mat-tab representan un elemento u opcion-->
+  <mat-tab-group>
+  
+    <mat-tab label="Beginners">
+      <!--crearemos las cards de los cursos-->
+      <courses-card-list [courses]="beginnerCourses$ | async"></courses-card-list>
+
+    </mat-tab>
+  
+
+    <mat-tab label="Advanced">
+      <courses-card-list [courses]="advancedCourses$ | async"></courses-card-list>
+
+    </mat-tab>
+  
+  </mat-tab-group>
 
 </div>
 

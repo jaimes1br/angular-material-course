@@ -1,5 +1,132 @@
 <div [formGroup]="form" class="course-details-form">
 
+    <!-- se muestra solo con una linea abajo y placeholder se desplaza hacia arriba al escribir -->
+    <!-- Podemos customizar el comportamiento de este input, como por ejemplo modificar la posicion
+    del place cuando escribirmos en el cuadro -->
+    <!-- SI usamos en el mat-fotm-field
+    floatLabel = 'always' siempre aparece arriba del input
+    floatLabel = 'never' no existe movimiento y desaparece el place cuando se escribe  
+    floatLabel = 'auto' es el comportamiento default que es el que se mueve hacia arriba-->
+
+    
+    <mat-form-field>
+        <input matInput 
+               placeholder="Course title"
+               formControlName="title" 
+               #title>
+        
+        <!-- Podemos llenar elemenots predecterminados dentro de mi input, esto puede ser como agregar
+        informacipón al inicio con:
+        -->
+
+
+
+        <!-- Podemos mostrar al usuario un cierto limite de elementos como de que haz escrito 5
+             elemenots de 7 60 permitidos con -->
+
+        <mat-hint align="end">
+            {{ title.value.length}} / 60
+        </mat-hint>
+
+        <!-- mostrar errores dependiento una propiedad que validamos como -->
+        <mat-error *ngIf="courseTitle.errors?.minlength">
+            Este es un error que mostramos
+        </mat-error>
+
+        
+    </mat-form-field>
+
+    <!-- Radio bottons -->
+    <mat-radio-group class="course-type" formControlName="courseType">
+        <!-- añadimos una opcion -->
+        <mat-radio-button value="free">Free</mat-radio-button>
+        <mat-radio-button value="premium">Premium</mat-radio-button>
+        <mat-radio-button [disabled]="true" >No disponible</mat-radio-button>
+    </mat-radio-group>
+
+    <!-- dropdown opcion podmeos usar las opciones de aparrence en este caso tambie -->
+    <mat-form-field >
+        <!-- creamos el select que me permite mostrar las opciones -->
+        <mat-select formControlName="category" placeholder="Select category">
+            <!-- creamos una opcion -->
+            <mat-option value="beginners">Beginnners</mat-option>
+            <mat-option value="INTERMEDIATE">Intermediate</mat-option>
+            <mat-option value="ADVANCED">Advance</mat-option>
+
+            <!-- opcion sin valor -->
+            <mat-option>None</mat-option>
+
+            <!-- podmeos crear grupos de opciones -->
+            <mat-optgroup label="Group">
+                <mat-option value="1" >Opcion 1</mat-option>
+                <mat-option value="2" >Opcion 2</mat-option>
+                <mat-option value="3" >Opcion 3</mat-option>
+            </mat-optgroup>
+
+        </mat-select>
+
+    </mat-form-field>
+
+    <!-- dropdown con opcion de seleccion multiple -->
+    <!-- <mat-form-field > -->
+        <!-- creamos el select que me permite mostrar las opciones -->
+        <!-- <mat-select  multiple placeholder="Select varios"> -->
+            <!-- creamos una opcion -->
+            <!-- <mat-option value="beginners">Beginnners</mat-option> -->
+            <!-- <mat-option value="INTERMEDIATE">Intermediate</mat-option> -->
+            <!-- <mat-option value="ADVANCED">Advance</mat-option> -->
+
+        <!-- </mat-select> -->
+
+    <!-- </mat-form-field> -->
+
+    <!-- Campo de seleccion de una fecha -->
+    <mat-form-field >
+        <input matInput 
+               formControlName="releasedAt"
+               placeholder="Release date"
+               [matDatepicker]="releasedAtPicker">
+            
+        <!-- popup para abrir el calendario 
+        enlacamos el input, el toggle y el calendario con el releasedAtPicker-->
+        <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+
+        </mat-datepicker-toggle>  <!-- iconodel calendario -->
+        <mat-datepicker #releasedAtPicker [dateClass]="dateClass">
+
+        </mat-datepicker>
+    </mat-form-field>
+
+    <!-- checkbox -->
+    <!-- con indetermitade podemos dar un valor indetermindado [inderteminate]='true' -->
+    <mat-checkbox  
+            color="primary" 
+            formControlName="downloadsAllowed"
+            
+            >
+        Txto a mostrar
+    </mat-checkbox>
+
+    <!-- text area -->
+    <!-- usa el de JS por defecto pero usamos el input de mat -->
+    <mat-form-field appearance="outline" formControlName="longDescription">
+        <textarea matInput 
+                  placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <!-- tiene un background de color gris por default y no se ve el placeholder -->
+    <!-- <mat-form-field appearance="fill">
+        <input matInput 
+               placeholder="Course title"
+               formControlName="title" >
+    </mat-form-field> -->
+
+    <!-- es un cuadro blanco con el texto en medio pero no se muestra el placeholder con el texto dentro -->
+    <!-- <mat-form-field appearance="outline">
+        <input matInput 
+               placeholder="Course title"
+               formControlName="title" >
+    </mat-form-field> -->
 
 </div>
 

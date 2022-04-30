@@ -1,2 +1,84 @@
 
+<!--nav bar, en este caso cubre toda la pantalla con el fullscreen-->
+<mat-sidenav-container fullscreen>
+    
+    <!--contenido de la lista una vez que apretamos el boton del menu, ayudadmos del click .close()
+    una vez seleccionado un elemento en la lista cerramos la nav y nos vamos al router-outlet especifico -->
+    <mat-sidenav #sidenav> 
+        <mat-nav-list (click)="sidenav.close()">
+            
+            <!--Este es un enlace, contiene un icono y un texto-->
+            <a mat-list-item routerLink="/">
+                <mat-icon>library_books</mat-icon>
+                <span>Courses</span>
+            </a>
 
+            <a mat-list-item routerLink="about">
+                <mat-icon>question_answer</mat-icon>
+                <span>About</span>
+            </a>
+
+            <a mat-list-item>
+                <mat-icon>person_add</mat-icon>
+                <span>Register</span>
+            </a>
+
+            <a mat-list-item>
+                <mat-icon>account_circle</mat-icon>
+                <span>Login</span>
+            </a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!--Este es el btoon del menu que se ve y que al darle click (activa el open() y muestra el sidenav)-->
+    <!--el toolbar vendira siendo el navbar, aqui colocamos los elementos que queremos enlistar-->
+    <mat-toolbar color="primary">
+        <!-- boton del menu, al apretarlo abre el sidenav -->
+        <button mat-icon-button (click)="sidenav.open()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+
+        <!-- creamos un dropdown, en este caso usamos un a para dar imanende que es un boton, 
+        con el [matMenuTriggerFor]="nombreDelMenuADesplegar" estamos enlazando el efecto a que menu debe
+        mostrar, la etiqueta se le da al menu para saber a cual me refiero  -->
+        <a 
+            mat-button
+            [matMenuTriggerFor]="dropdown">
+            Dropdown
+        </a>
+
+        <!-- menu que se despliega del dropdwon, en este caso usamos una referencia local #dropdown = nombreDelMenuADesplegar  -->
+        <mat-menu #dropdown>
+            <button mat-menu-item routerLink="/">Courses</button>
+            <button mat-menu-item routerLink="/about">About</button>
+        </mat-menu>
+        
+        <a mat-button routerLink="/">
+            <mat-icon>library_books</mat-icon>
+            <span>Courses</span>
+        </a>
+
+        <a mat-button routerLink="about">
+            <mat-icon>question_answer</mat-icon>
+            <span>About</span>
+        </a>
+
+        <!-- una etiqueta mas para la nav bar -->
+        <a mat-button>
+            <mat-icon>person_add</mat-icon>
+            <span>Register</span>
+        </a>
+        
+        <!-- una etiqueta mas para la nav bar -->
+        <a mat-button>
+            <mat-icon>account_circle</mat-icon>
+            <span>Login</span>
+        </a>
+
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+</mat-sidenav-container>

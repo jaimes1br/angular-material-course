@@ -2,6 +2,40 @@
 
   <h2 class="title">Create New Course</h2>
 
+  <!-- El strepper son estos elementos que nos muestran como pasos sobre los cuales estamos, esto es 
+  como un formulario que tieene diferetntes pasos y al usuario se le muestra poco a poco, 
+  cada uno de estos pasos se etiquetan con un matStepLabel, y existen botones que nos permiten pasar al 
+  siguiente paso o al anterior, para ir hacia adelante el botton es un matStepperNext y para regresar el boton es un
+  matStepperPrevious-->
+  <mat-horizontal-stepper class="mat-elevation-z5" 
+                          labelPosition="buttom" 
+                          [linear]="true">
+
+    <mat-step errorMessage="Course details in errror">
+
+      <ng-template matStepLabel>Course Details</ng-template>
+
+      <create-course-step-1></create-course-step-1>
+      
+      <div class="strepper-buttons">
+        <button mat-raised-button color="primary" matStepperNext>Add Course Lessons</button>
+      </div>
+
+    </mat-step>
+
+    <mat-step errorMessage="Course lessons in errror">
+
+      <ng-template matStepLabel>Course Lessons</ng-template>
+
+      <create-course-step-2></create-course-step-2>
+
+      <div class="strepper-buttons">
+        <button mat-raised-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent"> Create Course</button>
+      </div>
+    </mat-step>
+    
+  </mat-horizontal-stepper>
 
 </div>
 
